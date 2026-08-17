@@ -6,4 +6,5 @@ export interface Link {
   icon?: string;
   highlight?: boolean;
   social?: boolean;
+  disabled?: boolean;
 }

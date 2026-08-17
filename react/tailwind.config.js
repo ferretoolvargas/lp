@@ -5,15 +5,12 @@ export default {
   theme: {
     extend: {
       colors: {
-        "pm-yellow":  "#FFCC00",
-        "pm-red":     "#CC1A0F",
-        "pm-orange":  "#FF8C00",
-        "pm-blue":    "#7DD8EE",
-        "pm-dark":    "#0A0A0F",
-        "pm-darkred": "#1A0000",
+        primary: "#FF5A00",
+        secondary: "#FFC300",
       },
       fontFamily: {
         sans: ["Inter", "system-ui", "sans-serif"],
+        heading: ["Montserrat", "Inter", "system-ui", "sans-serif"],
       },
     },
   },
