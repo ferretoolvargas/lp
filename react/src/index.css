@@ -43,7 +43,7 @@ button { border: 0; }
 a { color: inherit; }
 
 .app-shell { min-height: 100svh; background: var(--background); }
-.theme-header { position: fixed; top: 18px; right: 18px; z-index: 20; }
+.theme-header { position: fixed; right: 18px; bottom: 18px; z-index: 20; }
 .theme-toggle {
   display: grid;
   width: 42px;
@@ -67,19 +67,17 @@ a { color: inherit; }
   min-height: 100svh;
   place-items: center;
   overflow: hidden;
-  padding: 72px 20px 36px;
+  padding: 20px;
   isolation: isolate;
 }
 .link-bio::before {
   position: absolute;
   z-index: -3;
   inset: -40px;
-  background-image: var(--brand-background);
-  background-position: center;
-  background-size: cover;
+  background: radial-gradient(circle at 50% 0%, color-mix(in srgb, var(--primary) 18%, transparent), transparent 52%);
   content: '';
-  filter: blur(24px) saturate(.8);
-  opacity: .16;
+  filter: blur(24px);
+  opacity: .5;
   transform: scale(1.12);
 }
 .link-bio::after {
@@ -103,16 +101,6 @@ a { color: inherit; }
   backdrop-filter: blur(24px);
 }
 .brand-block { text-align: center; }
-.profile-image {
-  display: block;
-  width: 104px;
-  height: 104px;
-  margin: 0 auto 17px;
-  border: 3px solid var(--primary);
-  border-radius: 28px;
-  object-fit: cover;
-  box-shadow: 0 12px 32px rgba(0, 0, 0, .16);
-}
 .brand-logo { display: block; width: min(100%, 292px); max-height: 116px; margin: 0 auto; object-fit: contain; }
 .tagline { margin: 4px 0 0; color: var(--text-primary); font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
 .location { display: flex; align-items: center; justify-content: center; gap: 5px; margin: 7px 0 0; color: var(--text-secondary); font-size: 12px; }
@@ -158,14 +146,11 @@ a { color: inherit; }
 .button-link-highlight .button-arrow { color: rgba(23, 19, 10, .72); }
 .button-link-disabled { cursor: not-allowed; opacity: .5; }
 
-.bio-footer { display: flex; justify-content: center; gap: 7px; margin-top: 23px; color: var(--text-secondary); font-size: 10px; letter-spacing: .02em; }
-
 @media (max-width: 480px) {
-  .link-bio { padding: 62px 14px 20px; place-items: start center; }
+  .link-bio { padding: 14px; place-items: center; }
   .bio-card { padding: 22px 16px 18px; border-radius: 24px; }
-  .profile-image { width: 88px; height: 88px; border-radius: 24px; }
   .brand-logo { width: min(100%, 260px); max-height: 102px; }
-  .theme-header { top: 12px; right: 12px; }
+  .theme-header { right: 12px; bottom: 12px; }
   .theme-toggle { width: 38px; height: 38px; }
 }
 
