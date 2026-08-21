@@ -1,3 +1,4 @@
+import type { CSSProperties } from 'react'
 import ButtonLink from './ButtonLink'
 import { links } from '../data/content'
 
@@ -6,24 +7,25 @@ const asset = (name: string) => `${import.meta.env.BASE_URL}${name}`
 export default function LinkBio({ isDark }: { isDark: boolean }) {
   const social = links.filter((link) => link.social)
   return (
-    <div className="link-bio min-h-screen flex items-center justify-center bg-center bg-cover p-6" style={{ backgroundImage: `url(${asset('foto-perfil.jpg')})` }}>
-      <div className="bio-card w-full max-w-md rounded-2xl overflow-hidden card-custom">
-        <div className="relative header">
-          <img src={asset(isDark ? 'ftv-dark.png' : 'ftv-light.png')} alt="Isotipo de Ferretools Vargas" className="w-full object-contain header-img" />
-          <div className="overlay text-center">
-            <h5 className="brand-name font-bold text-2xl">FERRETOOLS VARGAS</h5>
-            <small className="tagline block">Herramientas para cada proyecto</small>
-            <div className="flex justify-center gap-3 mt-3">
-              {social.map((item) => item.disabled ? (
-                <span key={item.label} className="social-link social-link-disabled text-2xl" aria-label="Facebook próximamente" title="Facebook próximamente"><i className={`bi ${item.icon || ''}`} /></span>
-              ) : (
-                <a key={item.label} href={item.url} target="_blank" rel="noreferrer" className="social-link text-2xl hover:scale-110 transition" aria-label={item.label}><i className={`bi ${item.icon || ''}`} /></a>
-              ))}
-            </div>
-          </div>
+    <section className="link-bio" style={{ '--brand-background': `url(${asset('foto-perfil.jpg')})` } as CSSProperties}>
+      <div className="ambient ambient-one" />
+      <div className="ambient ambient-two" />
+      <article className="bio-card">
+        <div className="brand-block">
+          <img className="profile-image" src={asset('foto-perfil.jpg')} alt="Ferretool Vargas" />
+          <img src={asset(isDark ? 'ftv-letras-fh-dark.png' : 'ftv-letras-fh-light.png')} alt="Ferretool Vargas — Ferretería y herramientas" className="brand-logo" />
+          <p className="location"><i className="bi bi-geo-alt" aria-hidden="true" /> La Paz, Bolivia</p>
+          <nav className="social-list" aria-label="Redes sociales">
+            {social.map((item) => item.disabled ? (
+              <span key={item.label} className="social-link social-link-disabled" aria-label={`${item.label}, próximamente`} title="Próximamente"><i className={`bi ${item.icon || ''}`} /></span>
+            ) : (
+              <a key={item.label} href={item.url} target="_blank" rel="noreferrer" className="social-link" aria-label={item.label}><i className={`bi ${item.icon || ''}`} /></a>
+            ))}
+          </nav>
         </div>
-        <div className="p-4 links flex flex-col gap-3">{links.map((link) => <ButtonLink key={link.label} link={link} />)}</div>
-      </div>
-    </div>
+        <div className="links" aria-label="Enlaces principales">{links.map((link) => <ButtonLink key={link.label} link={link} />)}</div>
+        <footer className="bio-footer"><span>Ferretool Vargas</span><span aria-hidden="true">•</span><span>Ferretería & herramientas</span></footer>
+      </article>
+    </section>
   )
 }

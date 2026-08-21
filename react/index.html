@@ -3,11 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="description" content="Ferretools Vargas: herramientas, materiales y soluciones para construcción, mantenimiento y hogar en La Paz, Bolivia. Consulta nuestros productos por WhatsApp." />
-    <meta name="application-name" content="Ferretools Vargas" />
-    <meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)" />
-    <meta name="theme-color" content="#0A0A0A" media="(prefers-color-scheme: dark)" />
-    <meta property="og:title" content="Ferretools Vargas | Herramientas y ferretería en La Paz" />
+    <meta name="description" content="Ferretool Vargas: herramientas, materiales y soluciones para construcción, mantenimiento y hogar en La Paz, Bolivia. Consulta nuestros productos por WhatsApp." />
+    <meta name="application-name" content="Ferretool Vargas" />
+    <meta name="theme-color" content="#0B0D0E" />
+    <meta property="og:title" content="Ferretool Vargas | Herramientas y ferretería en La Paz" />
     <meta property="og:description" content="Herramientas, materiales y soluciones para construcción, mantenimiento y hogar en La Paz, Bolivia." />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://pollosmision.github.io/lp/" />
@@ -19,12 +18,12 @@
     <script>
       (() => {
         const saved = localStorage.getItem('ftv-theme');
-        const theme = saved || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light');
+        const theme = saved || 'dark';
         document.documentElement.classList.toggle('dark', theme === 'dark');
         document.documentElement.dataset.theme = theme;
       })();
     </script>
-    <title>Ferretools Vargas | Herramientas y ferretería en La Paz</title>
+    <title>Ferretool Vargas | Herramientas y ferretería en La Paz</title>
   </head>
   <body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body>
 </html>

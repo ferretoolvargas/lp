@@ -7,9 +7,7 @@ export function useTheme() {
     if (typeof window !== "undefined") {
       const saved = localStorage.getItem("ftv-theme") as Theme | null;
       if (saved) return saved;
-      return window.matchMedia("(prefers-color-scheme: dark)").matches
-        ? "dark"
-        : "light";
+      return "dark";
     }
     return "dark";
   });

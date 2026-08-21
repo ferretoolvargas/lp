@@ -1,6 +1,6 @@
 import { Link } from '../types'
 
-const whatsappMessage = encodeURIComponent('Hola Ferretools Vargas, quisiera consultar por un producto.')
+const whatsappMessage = encodeURIComponent('Hola Ferretool Vargas, quisiera consultar por un producto.')
 
 export const links: Link[] = [
   { label: 'Consultar por WhatsApp', url: `https://wa.me/59160514138?text=${whatsappMessage}`, icon: 'bi-whatsapp', highlight: true },
