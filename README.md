@@ -2,6 +2,8 @@
 
 Página biolink de Ferretool Vargas, una ferretería ubicada en La Paz, Bolivia. La versión activa del proyecto está construida con React, TypeScript y Vite.
 
+**Sitio publicado:** [https://ferretoolvargas.github.io/lp/](https://ferretoolvargas.github.io/lp/)
+
 ## Estado del proyecto
 
 - Aplicación principal: `react/`
