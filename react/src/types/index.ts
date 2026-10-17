@@ -7,4 +7,5 @@ export interface Link {
   highlight?: boolean;
   social?: boolean;
   disabled?: boolean;
+  kind?: "whatsapp" | "website" | "facebook" | "instagram" | "tiktok";
 }
