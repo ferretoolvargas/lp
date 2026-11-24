@@ -30,6 +30,6 @@ npm run preview    # serve the build
 
 ## Deployment
 
-`.github/workflows/deploy-pages.yml` deploys to GitHub Pages on push to `main` touching `react/**` (Node 24, `npm ci` in `react/`, so keep `package-lock.json` committed). The README still says publishing is manual, which is outdated. Pushing to `main` publishes.
+`.github/workflows/deploy-pages.yml` runs typecheck + build on PRs and pushes, and deploys to GitHub Pages only on push to `main` touching `react/**` (Node 24, `npm ci` in `react/`, so keep `package-lock.json` committed). Pushing to `main` publishes. Dependabot (`.github/dependabot.yml`) bumps actions and npm deps monthly.
 
 Before changing layout, check widths 320, 390, 768, 1024 and 1440 px.

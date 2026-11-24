@@ -1,7 +1,6 @@
 # Ferretool Vargas — Biolink
 
-[![CI](https://github.com/ferretoolvargas/lp/actions/workflows/ci.yml/badge.svg)](https://github.com/ferretoolvargas/lp/actions/workflows/ci.yml)
-[![Deploy](https://github.com/ferretoolvargas/lp/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ferretoolvargas/lp/actions/workflows/deploy-pages.yml)
+[![CI/CD](https://github.com/ferretoolvargas/lp/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ferretoolvargas/lp/actions/workflows/deploy-pages.yml)
 
 Página biolink de **Ferretool Vargas**, ferretería ubicada en La Paz, Bolivia. Reúne en una sola pantalla el contacto por WhatsApp, el sitio web y las redes sociales.
 
@@ -73,17 +72,23 @@ El tipo `Link` está en `react/src/types/index.ts`. Los logotipos y la foto de m
 │   │   └── main.tsx
 │   └── vite.config.ts
 ├── angular/                  # versión anterior, solo referencia
-└── .github/workflows/        # ci.yml y deploy-pages.yml
+└── .github/workflows/        # deploy-pages.yml (CI/CD)
 ```
 
 ## CI y despliegue
 
-| Workflow          | Cuándo corre                                              | Qué hace                                  |
-| ----------------- | --------------------------------------------------------- | ----------------------------------------- |
-| `ci.yml`          | Pull requests y ramas distintas de `main` que toquen `react/**` | `npm ci`, `typecheck`, `build`      |
-| `deploy-pages.yml`| Push a `main` que toque `react/**`, o manualmente         | `npm ci`, `typecheck`, `build`, publica en GitHub Pages |
+Un solo workflow, `.github/workflows/deploy-pages.yml` (**CI/CD**), con dos jobs:
 
-**Cada push a `main` publica el sitio automáticamente.** Para cambios con riesgo visual, trabaja en una rama, abre un pull request y revisa con `npm run preview` antes de fusionar.
+| Job      | Cuándo                                              | Qué hace                                    |
+| -------- | --------------------------------------------------- | ------------------------------------------- |
+| `build`  | Pull requests, push a `main` y manual               | `npm ci`, `typecheck`, `build`              |
+| `deploy` | Solo push a `main` o manual desde `main`, tras `build` | Publica `react/dist` en GitHub Pages     |
+
+Solo corre si cambian `react/**` o el propio workflow. Los pull requests nuevos cancelan runs anteriores de la misma rama; los despliegues de `main` nunca se cancelan.
+
+**Cada push a `main` publica el sitio.** Para cambios con riesgo visual, trabaja en una rama, abre un pull request y revisa con `npm run preview` antes de fusionar. Se recomienda exigir el check `Typecheck and build` en la protección de `main`.
+
+Dependabot (`.github/dependabot.yml`) propone cada mes actualizaciones de las actions y de las dependencias npm.
 
 Requisito único en GitHub: en *Settings → Pages*, la fuente debe ser **GitHub Actions**.
 
