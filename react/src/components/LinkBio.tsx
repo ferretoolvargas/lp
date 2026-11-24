@@ -21,6 +21,7 @@ export default function LinkBio({ isDark }: { isDark: boolean }) {
         scale: 0.97,
         duration: 0.8,
         ease: 'power3.out',
+        clearProps: 'transform,opacity',
       })
       gsap.from('.brand-block > *', {
         opacity: 0,
@@ -29,6 +30,7 @@ export default function LinkBio({ isDark }: { isDark: boolean }) {
         stagger: 0.07,
         delay: 0.18,
         ease: 'power2.out',
+        clearProps: 'transform,opacity',
       })
       gsap.from('.button-link', {
         opacity: 0,
@@ -37,6 +39,7 @@ export default function LinkBio({ isDark }: { isDark: boolean }) {
         stagger: 0.065,
         delay: 0.34,
         ease: 'power2.out',
+        clearProps: 'transform,opacity',
       })
     })
 
