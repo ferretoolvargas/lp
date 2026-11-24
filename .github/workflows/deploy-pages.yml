@@ -38,6 +38,10 @@ jobs:
         working-directory: react
         run: npm ci
 
+      - name: Typecheck
+        working-directory: react
+        run: npm run typecheck
+
       - name: Build
         working-directory: react
         run: npm run build

@@ -1,40 +1,38 @@
 # Ferretool Vargas — Biolink
 
-Página biolink de Ferretool Vargas, una ferretería ubicada en La Paz, Bolivia. La versión activa del proyecto está construida con React, TypeScript y Vite.
+[![CI](https://github.com/ferretoolvargas/lp/actions/workflows/ci.yml/badge.svg)](https://github.com/ferretoolvargas/lp/actions/workflows/ci.yml)
+[![Deploy](https://github.com/ferretoolvargas/lp/actions/workflows/deploy-pages.yml/badge.svg)](https://github.com/ferretoolvargas/lp/actions/workflows/deploy-pages.yml)
 
-**Sitio publicado:** [https://ferretoolvargas.github.io/lp/](https://ferretoolvargas.github.io/lp/)
+Página biolink de **Ferretool Vargas**, ferretería ubicada en La Paz, Bolivia. Reúne en una sola pantalla el contacto por WhatsApp, el sitio web y las redes sociales.
 
-## Estado del proyecto
+**Sitio publicado:** https://ferretoolvargas.github.io/lp/
 
-- Aplicación principal: `react/`
-- Versión anterior de referencia: `angular/`
-- Publicación: manual. Este repositorio no publica automáticamente los cambios.
+## Contenido
+
+- [Características](#características)
+- [Tecnologías](#tecnologías)
+- [Primeros pasos](#primeros-pasos)
+- [Editar contenido](#editar-contenido)
+- [Estructura](#estructura)
+- [CI y despliegue](#ci-y-despliegue)
+- [Diseño y accesibilidad](#diseño-y-accesibilidad)
 
 ## Características
 
-- Biolink compacta con diseño responsive y enfoque mobile-first.
-- Tema claro y oscuro persistido en `localStorage`.
-- Contacto directo por WhatsApp y acceso al sitio web principal.
-- Enlaces a Facebook, Instagram y TikTok.
-- Microanimaciones de entrada con GSAP.
-- Experiencia estática equivalente cuando el usuario activa `prefers-reduced-motion`.
-- Metadatos básicos para SEO y redes sociales.
+- Diseño responsive, mobile-first.
+- Tema claro y oscuro (oscuro por defecto), guardado en `localStorage` con la clave `ftv-theme`.
+- Contacto directo por WhatsApp con mensaje inicial prellenado.
+- Enlaces a sitio web, Facebook, Instagram y TikTok.
+- Animaciones de entrada con GSAP. Con `prefers-reduced-motion` la página se muestra estática.
+- Metadatos SEO y Open Graph.
 
 ## Tecnologías
 
-- React 18
-- TypeScript
-- Vite 5
-- GSAP y `@gsap/react`
-- Tailwind CSS 4 como parte del pipeline de estilos
-- Bootstrap Icons
+React 18 · TypeScript · Vite 5 · GSAP (`@gsap/react`) · Tailwind CSS 4 · Bootstrap Icons
 
-## Requisitos
+## Primeros pasos
 
-- Node.js 18 o superior
-- npm 9 o superior
-
-## Instalación y desarrollo
+Requisitos: Node.js 18+ (CI usa Node 24) y npm 9+.
 
 ```bash
 cd react
@@ -42,55 +40,55 @@ npm install
 npm run dev
 ```
 
-Vite mostrará la URL local disponible. La ruta base configurada para el proyecto es `/lp/`.
+| Comando             | Acción                                  |
+| ------------------- | --------------------------------------- |
+| `npm run dev`       | Servidor de desarrollo                  |
+| `npm run typecheck` | Comprobación de TypeScript              |
+| `npm run build`     | Compilación de producción en `dist/`    |
+| `npm run preview`   | Vista previa de la compilación          |
 
-## Comandos disponibles
+La ruta base de Vite es `/lp/` (`react/vite.config.ts`). El proyecto no tiene linter ni pruebas automatizadas; la validación se hace con `typecheck` y `build`.
 
-```bash
-npm run dev       # servidor de desarrollo
-npm run typecheck # comprobación de TypeScript
-npm run build     # compilación de producción
-npm run preview   # vista previa de la compilación
-```
+## Editar contenido
 
-## Contenido y enlaces
-
-Los destinos de WhatsApp, sitio web y redes sociales se mantienen en:
+Enlaces, números y mensaje de WhatsApp están en un solo archivo:
 
 ```text
 react/src/data/content.ts
 ```
 
-El mensaje inicial de WhatsApp también se puede editar en ese archivo.
+El tipo `Link` está en `react/src/types/index.ts`. Los logotipos y la foto de marca están en `react/public/` y `react/src/assets/`.
 
-## Estructura principal
+## Estructura
 
 ```text
-react/
-├── public/                  # logotipos, favicon y fotografía de marca
-├── src/
-│   ├── components/         # interfaz y tarjetas de enlace
-│   ├── data/content.ts     # datos de contacto y redes
-│   ├── hooks/useTheme.ts   # estado del tema
-│   ├── App.tsx
-│   ├── index.css
-│   └── main.tsx
-├── index.html
-└── package.json
+.
+├── react/                    # aplicación activa
+│   ├── public/               # logotipos, favicon, foto de marca
+│   ├── src/
+│   │   ├── components/       # LinkBio, ButtonLink, Stats
+│   │   ├── data/content.ts   # enlaces y mensaje de WhatsApp
+│   │   ├── hooks/            # useTheme, useInView, useCountUp
+│   │   ├── App.tsx
+│   │   └── main.tsx
+│   └── vite.config.ts
+├── angular/                  # versión anterior, solo referencia
+└── .github/workflows/        # ci.yml y deploy-pages.yml
 ```
+
+## CI y despliegue
+
+| Workflow          | Cuándo corre                                              | Qué hace                                  |
+| ----------------- | --------------------------------------------------------- | ----------------------------------------- |
+| `ci.yml`          | Pull requests y ramas distintas de `main` que toquen `react/**` | `npm ci`, `typecheck`, `build`      |
+| `deploy-pages.yml`| Push a `main` que toque `react/**`, o manualmente         | `npm ci`, `typecheck`, `build`, publica en GitHub Pages |
+
+**Cada push a `main` publica el sitio automáticamente.** Para cambios con riesgo visual, trabaja en una rama, abre un pull request y revisa con `npm run preview` antes de fusionar.
+
+Requisito único en GitHub: en *Settings → Pages*, la fuente debe ser **GitHub Actions**.
 
 ## Diseño y accesibilidad
 
-La interfaz conserva la paleta naranja, amarilla y acero de Ferretool Vargas. Los controles tienen estados de foco visibles, los enlaces externos incluyen nombres accesibles y las animaciones se desactivan para quienes prefieren movimiento reducido.
+Paleta naranja, amarilla y acero de la marca. Foco visible en controles, nombres accesibles en enlaces externos y animaciones desactivadas con movimiento reducido.
 
-Antes de publicar, conviene revisar al menos estos anchos de pantalla:
-
-- 320 px: móvil compacto
-- 390 px: móvil habitual
-- 768 px: tablet
-- 1024 px: portátil
-- 1440 px: escritorio
-
-## Publicación
-
-El comando `npm run build` genera los archivos estáticos en `react/dist/`. Publicar esa carpeta depende del proveedor de hosting elegido. No se debe ejecutar un despliegue sin una revisión visual final y autorización explícita.
+Antes de publicar cambios de diseño, revisa estos anchos: 320, 390, 768, 1024 y 1440 px.
