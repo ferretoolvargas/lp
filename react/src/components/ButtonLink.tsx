@@ -6,7 +6,7 @@ export default function ButtonLink({ link }: { link: LinkType }) {
       href={link.url}
       target="_blank"
       rel="noreferrer"
-      className={`button-link ${link.highlight ? 'button-link-highlight' : ''}`}
+      className={`button-link${link.highlight ? ' button-link-highlight' : ''}${link.social ? ' button-link-social' : ''}`}
       aria-label={`Abrir ${link.label}`}
     >
       <span className="button-icon"><i className={`bi ${link.icon || ''}`} aria-hidden="true" /></span>

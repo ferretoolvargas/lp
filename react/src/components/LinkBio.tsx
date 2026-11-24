@@ -2,7 +2,7 @@ import { useRef } from 'react'
 import gsap from 'gsap'
 import { useGSAP } from '@gsap/react'
 import ButtonLink from './ButtonLink'
-import { links, socialLinks } from '../data/content'
+import { links } from '../data/content'
 
 gsap.registerPlugin(useGSAP)
 
@@ -48,9 +48,6 @@ export default function LinkBio({ isDark }: { isDark: boolean }) {
 
   return (
     <section ref={scope} className="link-bio">
-      <div className="ambient ambient-one" />
-      <div className="ambient ambient-two" />
-
       <article className="bio-card">
         <div className="brand-block">
           <img
@@ -59,14 +56,6 @@ export default function LinkBio({ isDark }: { isDark: boolean }) {
             className="brand-logo"
           />
           <p className="location"><i className="bi bi-geo-alt" aria-hidden="true" /> La Paz, Bolivia</p>
-
-          <nav className="social-list" aria-label="Redes sociales">
-            {socialLinks.map((item) => (
-              <a key={item.label} href={item.url} target="_blank" rel="noreferrer" className="social-link" aria-label={item.label}>
-                <i className={`bi ${item.icon || ''}`} aria-hidden="true" />
-              </a>
-            ))}
-          </nav>
         </div>
 
         <div className="links" aria-label="Enlaces principales">
